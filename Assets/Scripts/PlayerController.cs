@@ -1,21 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-     public Rigidbody2D player;
-     private float gravity;
+    public Rigidbody2D player;
 
-
-    void Start ()
+    private void Start ()
     {
-        gravity = 20.0f;
         player = GetComponent<Rigidbody2D>();
     }
-	
-	void FixedUpdate ()
+
+    private void FixedUpdate ()
     {
 
         if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
