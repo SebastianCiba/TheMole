@@ -1,12 +1,22 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
+    public PrefabType IRubble;
 
     private void Start ()
     {
         player = GetComponent<Rigidbody2D>();
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("rubble"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     private void FixedUpdate ()
