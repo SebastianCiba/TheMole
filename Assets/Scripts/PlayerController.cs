@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
-    public PrefabType IRubble;
 
     private void Start ()
     {
@@ -21,6 +20,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate ()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 
         if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
         {
