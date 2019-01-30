@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class MobGenerator : MonoBehaviour
 {
-    public GameObject MobPrefab;
+    private int iRubble;
+    private int interval;
 
-    private GameObject instantiatedMob;
-    //private Vector2 position = new Vector2(0, 15);
+    public GameObject[] rubble;
 
-    public void Start()
+    public void Update()
     {
-        Debug.Log("StartSpawning1");
-        instantiatedMob = Instantiate(MobPrefab, new Vector2(2f, 4f), Quaternion.identity);
+        interval++;
+        if (interval > 30)
+        {
+            interval = 0;
+            iRubble = Random.Range(0, 5);
+            Instantiate(rubble[iRubble], new Vector2(Random.Range(-7, 7), Random.Range(12, 36)), Quaternion.identity);
+        }
+        
     }
 }

@@ -1,13 +1,25 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D player;
+    public BoxCollider2D head;
+    public Text PointsText;
+    public Text BricksText;
+    private int points;
+    private int bricks;
 
     private void Start ()
     {
         player = GetComponent<Rigidbody2D>();
+        head = GetComponent<BoxCollider2D>();
+
+        Debug.Log("Start");
+        PointsText.text = "Punkty: " + Environment.NewLine + "0";
+        BricksText.text = "Klocki: " + Environment.NewLine + "0";
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -15,12 +27,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("rubble"))
         {
             Destroy(collision.gameObject);
+            points += 20;
+            bricks++;
+            PointsText.text = "Punkty: " + Environment.NewLine + points;
+            BricksText.text = "Klocki: " + Environment.NewLine + bricks;
         }
     }
 
     private void FixedUpdate ()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
@@ -28,7 +44,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown("right") || Input.GetKeyDown("d"))
         {
             player.transform.position += Vector3.right;
-
         }
 
         else if (Input.GetKeyDown("left") || Input.GetKeyDown("a"))
