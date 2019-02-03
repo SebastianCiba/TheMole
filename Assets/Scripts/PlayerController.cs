@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private int points;
     private int bricks;
 
+    public MobGenerator MG;
+
     private void Start ()
     {
         player = GetComponent<Rigidbody2D>();
@@ -31,6 +33,11 @@ public class PlayerController : MonoBehaviour
             bricks++;
             PointsText.text = "Punkty: " + Environment.NewLine + points;
             BricksText.text = "Klocki: " + Environment.NewLine + bricks;
+        }
+
+        if (bricks % 10 == 0)
+        {
+            MG.SetGravity(bricks/100);
         }
     }
 
