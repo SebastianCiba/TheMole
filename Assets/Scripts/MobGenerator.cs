@@ -23,7 +23,6 @@ public class MobGenerator : MonoBehaviour
             interval = 0;
             iRubble = Random.Range(0, 5);
             Instantiate(rubble[iRubble], new Vector2(Random.Range(-7, 7), Random.Range(12, 36)), Quaternion.identity);
-            //rubble[iRubble] = GetComponent<Rigidbody2D>();
             rubble[iRubble].gravityScale = gravity;
         }
         

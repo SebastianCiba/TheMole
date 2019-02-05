@@ -9,10 +9,11 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D head;
     public Text PointsText;
     public Text BricksText;
+    public Text SpeedText;
     private int points;
     private int bricks;
 
-    public MobGenerator MG;
+    private MobGenerator MG;
 
     private void Start ()
     {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Start");
         PointsText.text = "Punkty: " + Environment.NewLine + "0";
         BricksText.text = "Klocki: " + Environment.NewLine + "0";
+        SpeedText.text = "Szybkość: " + Environment.NewLine + "0";
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (bricks % 10 == 0)
         {
+            SpeedText.text = "Szybkość: " + Environment.NewLine + bricks / 10;
             MG.SetGravity(bricks/100);
         }
     }
